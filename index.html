@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Немецкий язык: Спряжение глаголов (Präsens) | Интерактивные упражнения</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FFF8EC;
+            font-family: system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            color: #2C2C2C;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1E3A5F;
+            border-left: 6px solid #E5A93D;
+            padding-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subhead {
+            color: #2C2C2C;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #E5A93D;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        .task-section {
+            background: rgba(255, 248, 236, 0.7);
+            border-radius: 28px;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(229, 169, 61, 0.25);
+            transition: box-shadow 0.2s;
+        }
+
+        .task-section:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .task-title {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #1E3A5F;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .task-title span {
+            background: #E5A93D;
+            color: #1E3A5F;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 60px;
+        }
+
+        .task-desc {
+            color: #4a5568;
+            margin-bottom: 1.6rem;
+            font-size: 0.95rem;
+            border-left: 3px solid #C44B3C;
+            padding-left: 14px;
+            background: #FFF8EC;
+        }
+
+        .questions-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .card-item {
+            background: white;
+            border-radius: 20px;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #F0E2CD;
+            transition: all 0.2s;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .card-item:hover {
+            border-color: #E5A93D;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1E3A5F;
+            background: #FFF8EC;
+            padding: 0.3rem 0.6rem;
+            border-radius: 16px;
+            flex: 2;
+            min-width: 140px;
+        }
+
+        .conjugation-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 8px 16px;
+            align-items: center;
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+        .conjugation-grid label {
+            font-weight: 600;
+            color: #1E3A5F;
+            justify-self: end;
+        }
+        .conjugation-grid input {
+            width: 100%;
+            max-width: 180px;
+        }
+
+        select, input {
+            background: white;
+            border: 1px solid #E5A93D;
+            border-radius: 40px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            color: #1E3A5F;
+            font-weight: 500;
+            min-width: 140px;
+        }
+        select {
+            cursor: pointer;
+        }
+        input {
+            cursor: text;
+        }
+
+        .btn-answer {
+            background-color: #E5A93D;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #1E3A5F;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .btn-answer:hover {
+            background-color: #C44B3C;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .answer-box {
+            display: none;
+            background: #FFF8EC;
+            border-left: 4px solid #C44B3C;
+            padding: 0.6rem 1rem;
+            margin-top: 0.7rem;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            color: #2C2C2C;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .german-word {
+            font-weight: 600;
+            color: #1E3A5F;
+            background: #FFF0DF;
+            padding: 0.1rem 0.4rem;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .inline-icon {
+            font-size: 1.2rem;
+            margin-right: 4px;
+        }
+
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 700px) {
+            .card-item { flex-direction: column; align-items: stretch; }
+            .btn-answer { align-self: flex-start; }
+            .conjugation-grid { grid-template-columns: 1fr; gap: 6px; }
+            .conjugation-grid label { justify-self: start; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>
+        <span class="inline-icon">🔤</span> Спряжение глаголов (Präsens)
+    </h1>
+    <div class="subhead">Правильные и неправильные глаголы. Ответы по клику.</div>
+
+    <!-- =========== ЗАДАНИЕ 1: Проспрягай kochen =========== -->
+    <div class="task-section">
+        <div class="task-title"><span>1</span> Проспрягай глагол <span class="german-word">kochen</span></div>
+        <div class="task-desc">Вставь правильные формы для каждого лица.</div>
+        <div class="card-item" style="flex-direction: column; align-items: stretch;">
+            <div class="conjugation-grid">
+                <label>ich</label>
+                <input type="text" id="konj1" placeholder="koche?">
+                <label>du</label>
+                <input type="text" id="konj2" placeholder="kochst?">
+                <label>er / sie / es</label>
+                <input type="text" id="konj3" placeholder="kocht?">
+                <label>wir</label>
+                <input type="text" id="konj4" placeholder="kochen?">
+                <label>ihr</label>
+                <input type="text" id="konj5" placeholder="kocht?">
+                <label>sie (мн.)</label>
+                <input type="text" id="konj6" placeholder="kochen?">
+            </div>
+            <div>
+                <button class="btn-answer" id="showConjugation">🔎 Показать все формы</button>
+            </div>
+            <div id="conjugationAnswer" class="answer-box"></div>
+        </div>
+    </div>
+
+    <!-- =========== ЗАДАНИЕ 2: Поставь глагол в правильную форму =========== -->
+    <div class="task-section">
+        <div class="task-title"><span>2</span> Поставь глагол в правильную форму</div>
+        <div class="task-desc">Впиши глагол из скобок в нужном лице.</div>
+        <div class="questions-grid" id="task2">
+            <div class="card-item">
+                <div class="question-text">a) Ich _______ gern. (tanzen)</div>
+                <input type="text" id="v2a" placeholder="tanze?">
+                <button class="btn-answer" data-answer="tanze">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">b) Du _______ sehr gut. (singen)</div>
+                <input type="text" id="v2b" placeholder="singst?">
+                <button class="btn-answer" data-answer="singst">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">c) Er _______ ein Buch. (lesen)</div>
+                <input type="text" id="v2c" placeholder="liest?">
+                <button class="btn-answer" data-answer="liest">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">d) Wir _______ nach Berlin. (fahren)</div>
+                <input type="text" id="v2d" placeholder="fahren?">
+                <button class="btn-answer" data-answer="fahren">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">e) Ihr _______ gern Pasta? (kochen)</div>
+                <input type="text" id="v2e" placeholder="kocht?">
+                <button class="btn-answer" data-answer="kocht">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">f) _______ du müde? (sein)</div>
+                <input type="text" id="v2f" placeholder="bist?">
+                <button class="btn-answer" data-answer="bist">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">g) Meine Schwester _______ blonde Haare. (haben)</div>
+                <input type="text" id="v2g" placeholder="hat?">
+                <button class="btn-answer" data-answer="hat">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== ЗАДАНИЕ 3: Переведи на немецкий =========== -->
+    <div class="task-section">
+        <div class="task-title"><span>3</span> Переведи на немецкий</div>
+        <div class="task-desc">Напиши полное предложение, обращая внимание на спряжение.</div>
+        <div class="questions-grid" id="task3">
+            <div class="card-item">
+                <div class="question-text">a) Я читаю книгу. →</div>
+                <input type="text" id="trans3a" placeholder="Dein Satz">
+                <button class="btn-answer" data-answer="Ich lese ein Buch.">🌐 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">b) Ты танцуешь? →</div>
+                <input type="text" id="trans3b" placeholder="Dein Satz">
+                <button class="btn-answer" data-answer="Tanzt du?">🌐 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">c) Он едет в Берлин. →</div>
+                <input type="text" id="trans3c" placeholder="Dein Satz">
+                <button class="btn-answer" data-answer="Er fährt nach Berlin.">🌐 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">d) Мы поём. →</div>
+                <input type="text" id="trans3d" placeholder="Dein Satz">
+                <button class="btn-answer" data-answer="Wir singen.">🌐 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">e) Вы (ihr) готовите пиццу? →</div>
+                <input type="text" id="trans3e" placeholder="Dein Satz">
+                <button class="btn-answer" data-answer="Kocht ihr Pizza?">🌐 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== ЗАДАНИЕ 4: Найди и исправь ошибку =========== -->
+    <div class="task-section">
+        <div class="task-title"><span>4</span> Найди и исправь ошибку в спряжении</div>
+        <div class="task-desc">Напиши правильную форму.</div>
+        <div class="questions-grid" id="task4">
+            <div class="card-item">
+                <div class="question-text">a) Du lesst gern. →</div>
+                <input type="text" id="fix4a" placeholder="deine Korrektur">
+                <button class="btn-answer" data-answer="Du liest gern.">🔧 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">b) Er fahrt schnell. →</div>
+                <input type="text" id="fix4b" placeholder="deine Korrektur">
+                <button class="btn-answer" data-answer="Er fährt schnell.">🔧 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">c) Ihr singst schön. →</div>
+                <input type="text" id="fix4c" placeholder="deine Korrektur">
+                <button class="btn-answer" data-answer="Ihr singt schön.">🔧 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">d) Ich habe Hunger, du hast auch? →</div>
+                <input type="text" id="fix4d" placeholder="deine Korrektur">
+                <button class="btn-answer" data-answer="Ich habe Hunger, hast du auch?">🔧 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== ДОПОЛНИТЕЛЬНОЕ ЗАДАНИЕ 5: Выбери правильную форму =========== -->
+    <div class="task-section">
+        <div class="task-title"><span>5</span> Выбери правильную форму глагола (с изменением корня)</div>
+        <div class="task-desc">Выбери верный вариант из списка.</div>
+        <div class="questions-grid" id="task5">
+            <div class="card-item">
+                <div class="question-text">a) Er _______ (lesen) ein Buch.</div>
+                <select id="sel5a">
+                    <option value="">-- wähle --</option>
+                    <option value="lese">lese</option>
+                    <option value="liest">liest</option>
+                    <option value="lest">lest</option>
+                </select>
+                <button class="btn-answer" data-answer="liest">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">b) Wir _______ (fahren) nach München.</div>
+                <select id="sel5b">
+                    <option value="">-- wähle --</option>
+                    <option value="fahren">fahren</option>
+                    <option value="fährt">fährt</option>
+                    <option value="fahrt">fahrt</option>
+                </select>
+                <button class="btn-answer" data-answer="fahren">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">c) Du _______ (sprechen) Deutsch.</div>
+                <select id="sel5c">
+                    <option value="">-- wähle --</option>
+                    <option value="sprechest">sprechest</option>
+                    <option value="sprichst">sprichst</option>
+                    <option value="sprecht">sprecht</option>
+                </select>
+                <button class="btn-answer" data-answer="sprichst">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+            <div class="card-item">
+                <div class="question-text">d) Ihr _______ (essen) gern Schokolade.</div>
+                <select id="sel5d">
+                    <option value="">-- wähle --</option>
+                    <option value="esst">esst</option>
+                    <option value="isst">isst</option>
+                    <option value="esse">esse</option>
+                </select>
+                <button class="btn-answer" data-answer="esst">🔎 Ответ</button>
+                <div class="answer-box"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Обработка всех кнопок "Ответ"
+    document.querySelectorAll('.btn-answer').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const answerDiv = this.nextElementSibling;
+            if (!answerDiv || !answerDiv.classList.contains('answer-box')) return;
+
+            let correctText = '';
+
+            // Для всех кнопок с data-answer (задания 2, 3, 4, 5)
+            if (this.hasAttribute('data-answer')) {
+                const correct = this.getAttribute('data-answer');
+                correctText = `✅ Правильный ответ: <span class="german-word">${correct}</span>`;
+            }
+
+            // Особый случай: кнопка "Показать все формы" для задания 1
+            if (this.id === 'showConjugation') {
+                const forms = {
+                    ich: 'koche',
+                    du: 'kochst',
+                    er: 'kocht',
+                    wir: 'kochen',
+                    ihr: 'kocht',
+                    sie: 'kochen'
+                };
+                correctText = `✅ Правильные формы:<br>
+                              <span class="german-word">ich koche</span><br>
+                              <span class="german-word">du kochst</span><br>
+                              <span class="german-word">er / sie / es kocht</span><br>
+                              <span class="german-word">wir kochen</span><br>
+                              <span class="german-word">ihr kocht</span><br>
+                              <span class="german-word">sie (мн.) kochen</span>`;
+            }
+
+            if (correctText) {
+                if (answerDiv.style.display === 'none' || answerDiv.style.display === '') {
+                    answerDiv.innerHTML = correctText;
+                    answerDiv.style.display = 'block';
+                } else {
+                    answerDiv.style.display = 'none';
+                }
+            } else {
+                answerDiv.innerHTML = '⚠️ Не удалось определить ответ.';
+                answerDiv.style.display = 'block';
+            }
+        });
+    });
+
+    // Скрыть все блоки ответов изначально
+    document.querySelectorAll('.answer-box').forEach(box => box.style.display = 'none');
+</script>
+</body>
+</html>
