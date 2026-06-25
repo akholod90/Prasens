@@ -421,38 +421,39 @@
 </div>
 
 <script>
-    // Обработка всех кнопок "Ответ"
-    document.querySelectorAll('.btn-answer').forEach(btn => {
+    // Обработчик для кнопки "Показать все формы" в задании 1
+    document.getElementById('showConjugation').addEventListener('click', function(e) {
+        e.preventDefault();
+        const answerDiv = document.getElementById('conjugationAnswer');
+        if (!answerDiv) return;
+
+        const correctText = `✅ Правильные формы:<br>
+                            <span class="german-word">ich koche</span><br>
+                            <span class="german-word">du kochst</span><br>
+                            <span class="german-word">er / sie / es kocht</span><br>
+                            <span class="german-word">wir kochen</span><br>
+                            <span class="german-word">ihr kocht</span><br>
+                            <span class="german-word">sie (мн.) kochen</span>`;
+
+        if (answerDiv.style.display === 'none' || answerDiv.style.display === '') {
+            answerDiv.innerHTML = correctText;
+            answerDiv.style.display = 'block';
+        } else {
+            answerDiv.style.display = 'none';
+        }
+    });
+
+    // Обработчик для всех остальных кнопок с классом .btn-answer (кроме той, что уже обработана)
+    document.querySelectorAll('.btn-answer:not(#showConjugation)').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const answerDiv = this.nextElementSibling;
             if (!answerDiv || !answerDiv.classList.contains('answer-box')) return;
 
             let correctText = '';
-
-            // Для всех кнопок с data-answer (задания 2, 3, 4, 5)
             if (this.hasAttribute('data-answer')) {
                 const correct = this.getAttribute('data-answer');
                 correctText = `✅ Правильный ответ: <span class="german-word">${correct}</span>`;
-            }
-
-            // Особый случай: кнопка "Показать все формы" для задания 1
-            if (this.id === 'showConjugation') {
-                const forms = {
-                    ich: 'koche',
-                    du: 'kochst',
-                    er: 'kocht',
-                    wir: 'kochen',
-                    ihr: 'kocht',
-                    sie: 'kochen'
-                };
-                correctText = `✅ Правильные формы:<br>
-                              <span class="german-word">ich koche</span><br>
-                              <span class="german-word">du kochst</span><br>
-                              <span class="german-word">er / sie / es kocht</span><br>
-                              <span class="german-word">wir kochen</span><br>
-                              <span class="german-word">ihr kocht</span><br>
-                              <span class="german-word">sie (мн.) kochen</span>`;
             }
 
             if (correctText) {
